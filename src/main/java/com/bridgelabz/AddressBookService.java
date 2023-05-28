@@ -1,5 +1,8 @@
 package com.bridgelabz;
 
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +26,10 @@ public class AddressBookService {
             writingService.writeToIO(addressBookList);
         } catch (IOException e) {
             System.out.println("catch");
+        } catch (CsvRequiredFieldEmptyException e) {
+            throw new RuntimeException(e);
+        } catch (CsvDataTypeMismatchException e) {
+            throw new RuntimeException(e);
         }
     }
 
