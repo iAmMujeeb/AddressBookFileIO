@@ -12,10 +12,11 @@ public class AddressBookIOMain {
         addressBookService.readFromIO();
         long actualCount = addressBookService.countEntries();
         if (actualCount == 3) {
-            System.out.println("AddressBook contacts successfully written into the file");
+            System.out.println("AddressBook contacts successfully written into the text file");
         } else {
-            System.out.println("AddressBook contacts has not written into the file");
+            System.out.println("AddressBook contacts has not written into the text file");
         }
+        System.out.println("\n");
     }
 
     public void cSVFileIO(List<AddressBook> addressBookList) {
@@ -24,11 +25,26 @@ public class AddressBookIOMain {
         addressBookService.writeToIO();
         addressBookService.readFromIO();
         long actualCount = addressBookService.countEntries();
-        if (actualCount == 3) {
-            System.out.println("AddressBook contacts successfully written into the file");
+        if (actualCount == 10) {
+            System.out.println("AddressBook contacts successfully written into the csv file");
         } else {
-            System.out.println("AddressBook contacts has not written into the file");
+            System.out.println("AddressBook contacts has not written into the csv file");
         }
+        System.out.println("\n");
+    }
+
+    public void jSONFileIO(List<AddressBook> addressBookList) {
+        WritingService writingService = new IOImpJSON();
+        AddressBookService addressBookService = new AddressBookService(addressBookList, writingService);
+        addressBookService.writeToIO();
+        addressBookService.readFromIO();
+        long actualCount = addressBookService.countEntries();
+        if (actualCount == 1) {
+            System.out.println("AddressBook contacts successfully written into the json file");
+        } else {
+            System.out.println("AddressBook contacts has not written into the json file");
+        }
+        System.out.println("\n");
     }
 
     public static void main(String[] args) {
@@ -51,5 +67,6 @@ public class AddressBookIOMain {
         addressBookList.add(addressBook2);
         addressBookIOMain.textFileIO(addressBookList);
         addressBookIOMain.cSVFileIO(addressBookList);
+        addressBookIOMain.jSONFileIO(addressBookList);
     }
 }
