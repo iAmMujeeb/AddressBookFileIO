@@ -7,7 +7,7 @@ interface WritingService {
 
     void writeToIO(List<AddressBook> addressBookList) throws IOException;
 
-    void readFromIO()throws IOException;
+    void readFromIO() throws IOException;
 
-    long countEntries()throws IOException;
+    long countEntries() throws IOException;
 }

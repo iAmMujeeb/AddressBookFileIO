@@ -27,9 +27,9 @@ public class AddressBookIOMain {
         addressBookService.writeToIO();
         addressBookService.readFromIO();
         long actualCount = addressBookService.countEntries();
-        if (actualCount == 3){
+        if (actualCount == 3) {
             System.out.println("AddressBook contacts successfully written into the file");
-        }else {
+        } else {
             System.out.println("AddressBook contacts has not written into the file");
         }
     }

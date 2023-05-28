@@ -5,7 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-public class IOImpFile implements WritingService{
+public class IOImpFile implements WritingService {
 
     final static String filePath = "D:\\Bridgelabz\\AddressBookFileIO\\src\\main\\java\\com\\bridgelabz\\contact.txt";
 
@@ -16,12 +16,12 @@ public class IOImpFile implements WritingService{
             String contactString = addressBook.personList.toString().concat("\n");
             sb.append(contactString);
         });
-        Files.write(Path.of(filePath),sb.toString().getBytes());
+        Files.write(Path.of(filePath), sb.toString().getBytes());
     }
 
     @Override
     public void readFromIO() throws IOException {
-        Files.lines(Path.of(filePath)).forEach(addressBook->{
+        Files.lines(Path.of(filePath)).forEach(addressBook -> {
             System.out.println(addressBook);
         });
     }
