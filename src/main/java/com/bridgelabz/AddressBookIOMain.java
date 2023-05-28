@@ -5,7 +5,34 @@ import java.util.List;
 
 public class AddressBookIOMain {
 
+    public void textFileIO(List<AddressBook> addressBookList) {
+        WritingService writingService = new IOImpFile();
+        AddressBookService addressBookService = new AddressBookService(addressBookList, writingService);
+        addressBookService.writeToIO();
+        addressBookService.readFromIO();
+        long actualCount = addressBookService.countEntries();
+        if (actualCount == 3) {
+            System.out.println("AddressBook contacts successfully written into the file");
+        } else {
+            System.out.println("AddressBook contacts has not written into the file");
+        }
+    }
+
+    public void cSVFileIO(List<AddressBook> addressBookList) {
+        WritingService writingService = new IOImpCSV();
+        AddressBookService addressBookService = new AddressBookService(addressBookList, writingService);
+        addressBookService.writeToIO();
+        addressBookService.readFromIO();
+        long actualCount = addressBookService.countEntries();
+        if (actualCount == 3) {
+            System.out.println("AddressBook contacts successfully written into the file");
+        } else {
+            System.out.println("AddressBook contacts has not written into the file");
+        }
+    }
+
     public static void main(String[] args) {
+        AddressBookIOMain addressBookIOMain = new AddressBookIOMain();
         List<AddressBook> addressBookList = new ArrayList<>();
         AddressBook addressBook = new AddressBook();
         addressBook.addContact("Mujeeb", "Saifi", "Mumbai", "Maharashtra", 400089);
@@ -22,15 +49,7 @@ public class AddressBookIOMain {
         addressBook2.addContact("Mujbi", "Saifi", "Mumbai", "Maharashtra", 400089);
         addressBook2.addContact("Mujju", "Saifi", "Mumbai", "Maharashtra", 400099);
         addressBookList.add(addressBook2);
-        WritingService writingService = new IOImpFile();
-        AddressBookService addressBookService = new AddressBookService(addressBookList, writingService);
-        addressBookService.writeToIO();
-        addressBookService.readFromIO();
-        long actualCount = addressBookService.countEntries();
-        if (actualCount == 3) {
-            System.out.println("AddressBook contacts successfully written into the file");
-        } else {
-            System.out.println("AddressBook contacts has not written into the file");
-        }
+        addressBookIOMain.textFileIO(addressBookList);
+        addressBookIOMain.cSVFileIO(addressBookList);
     }
 }
